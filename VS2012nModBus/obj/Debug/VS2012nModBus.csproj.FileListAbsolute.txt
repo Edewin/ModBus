@@ -1,0 +1,14 @@
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.exe.config
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.exe
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.pdb
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\FtdAdapter.dll
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\log4net.dll
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\Modbus.dll
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\Modbus.Extensions.dll
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\Unme.Common.dll
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.csprojResolveAssemblyReference.cache
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.Form1.resources
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.Properties.Resources.resources
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.csproj.GenerateResource.Cache
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.exe
+D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.pdb
