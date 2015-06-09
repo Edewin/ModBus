@@ -36,9 +36,10 @@ namespace VS2012nModBus
                 serialport.Open();
                 textBox1.Text = "Conectat" + Environment.NewLine;
                 conectat = true;
-                timer1.Enabled = true;
+
                 button1.Enabled = false;
                 button3.Enabled = true;
+                comboBox1.Enabled = false;
             }
             catch (Exception )
             {
@@ -54,11 +55,9 @@ namespace VS2012nModBus
         private SerialPort serialport;
         private IModbusSerialMaster modbus;
         private static bool conectat = false;
-        private byte slaveId = 1;
-        private ushort startAdress = 4;
-        private ushort numRegisters = 4;
 
-        // some methods
+        //imi da eroarea o singura data;
+        private static bool messBxCount = true;
 
         // adaptata pentru contorul de energie Algodue
         private double readAlgodue(byte id, ushort adresa, ushort nrReg)
@@ -72,20 +71,38 @@ namespace VS2012nModBus
             }
             catch (Exception)
             {
-                MessageBox.Show("Eroare! Trebuie sa fii conectat!");
+                if (messBxCount)
+                {
+                    messBxCount = false;
+                    MessageBox.Show("Trebuie sa fii conectat!", "Eroare!!!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 return -1;
             }
 
         }
+
+        private static bool btnStartState = false;
         
         private void button2_Click(object sender, EventArgs e)
         {
-         double val = readAlgodue(slaveId, startAdress, numRegisters);
-         textBox1.AppendText(Convert.ToString(val) + Environment.NewLine);
+            if (btnStartState == false)
+            {
+                btnStartState = true;
+                button2.BackColor = Color.Red;
+                button2.Text = "STOP";
+                timer1.Enabled = true;
+            }
+            else {
+                btnStartState = false;
+                button2.Text = "Start";
+                button2.BackColor = Color.Lime;
+                timer1.Enabled = false;
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
+            messBxCount = true;
             try
             {
                 serialport.Close();
@@ -96,6 +113,7 @@ namespace VS2012nModBus
                 textBox1.AppendText(Environment.NewLine + "Deconectat");
                 button1.Enabled = true;
                 button3.Enabled = false;
+                comboBox1.Enabled = true;
             }
             catch (Exception)
             {
@@ -111,6 +129,7 @@ namespace VS2012nModBus
             if (conectat==false)
             {
                 button1.Enabled = true;
+                button2.Enabled = true;
                 portName = comboBox1.SelectedItem.ToString();
                 //MessageBox.Show(portName);
             }
@@ -123,34 +142,52 @@ namespace VS2012nModBus
         {
             //citeste valoare contor si adauga la grafic
             double valTensiune =readAlgodue(1, 4, 4);
+            double valFrecventa = readAlgodue(1, 140, 4); 
             if (autoY.Checked == true)
             {
+                //tensiune
                 chart1.ChartAreas[0].AxisY.Maximum = valTensiune + 2;
                 chart1.ChartAreas[0].AxisY.Minimum = valTensiune - 2;
+                textBox1.AppendText("Tensiunea: " + Convert.ToString(valTensiune) + Environment.NewLine);
+               // chart1.Series[0].Points.AddXY(counter, valTensiune);
+                //frecventa
+                chart1.ChartAreas[0].AxisY2.Maximum = valFrecventa + 0.2;
+                chart1.ChartAreas[0].AxisY2.Minimum = valFrecventa - 0.2;
+                textBox1.AppendText("Frecventa: " +Convert.ToString(valFrecventa) + Environment.NewLine);
+               // chart1.Series[1].Points.AddXY(counter, valFrecventa);
             }
             if (counter > Convert.ToDouble(setInterval.Value))
             {
                 chart1.ChartAreas[0].AxisX.Minimum = counter - Convert.ToDouble(setInterval.Value);
+                chart1.ChartAreas[0].AxisX2.Minimum = counter - Convert.ToDouble(setInterval.Value);
             }
             chart1.Series[0].Points.AddXY(counter, valTensiune);
+            chart1.Series[1].Points.AddXY(counter, valFrecventa);
             counter++;
 
         }
 
         private void setInterval_ValueChanged(object sender, EventArgs e)
         {
-            if(Convert.ToDouble(setInterval.Value) < counter)
-            chart1.ChartAreas[0].AxisX.Minimum = Convert.ToDouble(setInterval.Value);
+          /*  if (counter > Convert.ToDouble(setInterval.Value))
+            {
+                chart1.ChartAreas[0].AxisX.Minimum = counter - Convert.ToDouble(setInterval.Value);
+            }
+           */
         }
 
         private void chart1_Click(object sender, EventArgs e)
         {
-
+            chart1.Series[0].BorderWidth = 3;
+            chart1.Series[1].BorderWidth = 3;
+            chart1.Series[0].Color = Color.Red;
+            chart1.Series[1].Color = Color.Blue;
         }
 
         private void latimeTensiune_ValueChanged(object sender, EventArgs e)
         {
             chart1.Series[0].BorderWidth = Convert.ToInt32(latimeTensiune.Value);
+            chart1.Series[1].BorderWidth = Convert.ToInt32(latimeTensiune.Value);
         }
 
         private void Ymax_ValueChanged(object sender, EventArgs e)
@@ -176,5 +213,10 @@ namespace VS2012nModBus
                 Ymin.Enabled = true;
             }
         }
+
+       
+
+      
+       
     }
 }
