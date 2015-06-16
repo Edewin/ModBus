@@ -12,3 +12,12 @@ D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Deb
 D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.csproj.GenerateResource.Cache
 D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.exe
 D:\EduardSoltuzu\workspaceTests\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.pdb
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.exe.config
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.exe
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.pdb
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.exe
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\bin\Debug\VS2012nModBus.pdb
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.csprojResolveAssemblyReference.cache
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.Form1.resources
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.Properties.Resources.resources
+D:\EduardSoltuzu\VisualStudio\VS2012nModBus\VS2012nModBus\obj\Debug\VS2012nModBus.csproj.GenerateResource.Cache
