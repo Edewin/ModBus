@@ -35,6 +35,9 @@ namespace VS2012nModBus
         private static bool conectat = false;
         private TcpClient tcpClient;
         private ModbusSerialMaster master;
+
+        private TcpClient modTcpClient;
+        private ModbusIpMaster modTCPmaster;
         
         //imi da eroarea de tip MessageBox o singura data;
         private static bool messBxCount = true;
@@ -53,6 +56,10 @@ namespace VS2012nModBus
                 if (tabControl1.SelectedIndex == 0)
                 {
                     registers = modbus.ReadHoldingRegisters(id, adresa, nrReg);
+                }
+                else if (tabControl1.SelectedIndex == 2)
+                {
+                    registers = modTCPmaster.ReadHoldingRegisters(id, adresa, nrReg);
                 }
                 else
                 {
@@ -289,12 +296,18 @@ namespace VS2012nModBus
                 button2.BackColor = Color.Lime;
                
             }
-            else
+            else if(selected ==1)
             {
-                textBox1.Text = "Mod: TCP/IP";
+                textBox1.Text = "Mod: RTU over TCP/IP";
                 chart1.Series[0].Name = "Test values";
                 chart1.Series[1].Name = "Not Implemented...";
                 
+            }
+            else
+            {
+                textBox1.Text = "Mod: ModBus TCP/IP";
+                chart1.Series[0].Name = "Test values";
+                chart1.Series[1].Name = "Not Implemented...";  
             }
             
         }
@@ -395,7 +408,82 @@ namespace VS2012nModBus
 
         #endregion
 
-       
+        #region Butonul de Conectare pe ModBus TCP/IP
+
+        private static bool btn2State = false;
+        private void btnConnectModTCP_Click(object sender, EventArgs e)
+        {
+            if (btn2State == false)
+            {
+                btn2State = true;
+                btnConnectModTCP.Text= "Disconnect";
+                try
+                {
+                    modTcpClient = new TcpClient(txtBoxMBTCPsetIP.Text, Convert.ToInt32(txtBoxMBTCPsetPort.Text));
+                    modTcpClient.ReceiveTimeout = 2000;
+                    modTcpClient.SendTimeout = 2000;
+                    modTCPmaster = ModbusIpMaster.CreateIp(modTcpClient);
+                    textBox1.AppendText(Environment.NewLine + "Conectat");
+                    
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+        	{
+                btnConnectModTCP.Text = "Connect";
+                modTCPmaster = null;
+                btn2State = false;
+                textBox1.AppendText(Environment.NewLine + "Deconectat");
+
+	        }
+        }
+
+        #endregion
+
+
+        #region Butonul de citire pe ModBus TCP/IP
+
+        private void btnReadModTCP_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double dataTCP = readAlgodue(Convert.ToByte(numID.Value),
+                                            Convert.ToUInt16(numAdresa.Value),
+                                            Convert.ToUInt16(numCuvinte.Value));
+                textBox1.AppendText(Environment.NewLine + Convert.ToString(dataTCP));
+
+                if (autoY.Checked)
+                {
+                    chart1.ChartAreas[0].AxisY.Maximum = dataTCP + 2;
+                    chart1.ChartAreas[0].AxisY.Minimum = dataTCP - 2;
+                }
+
+                if (counter > Convert.ToDouble(setInterval.Value))
+                {
+                    chart1.ChartAreas[0].AxisX.Minimum = counter - Convert.ToDouble(setInterval.Value);
+                }
+
+                chart1.Series[0].Points.AddXY(counter, dataTCP);
+
+                counter++;
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        #endregion
+
         #endregion
     }
 }

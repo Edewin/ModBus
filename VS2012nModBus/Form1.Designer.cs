@@ -40,6 +40,7 @@
             this.Ymin = new System.Windows.Forms.NumericUpDown();
             this.autoY = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -57,7 +58,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.latimeTensiune = new System.Windows.Forms.NumericUpDown();
             this.setInterval = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button3 = new System.Windows.Forms.Button();
@@ -72,6 +72,14 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnConTCP = new System.Windows.Forms.Button();
             this.testBtn = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtBoxMBTCPsetIP = new System.Windows.Forms.TextBox();
+            this.txtBoxMBTCPsetPort = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.btnConnectModTCP = new System.Windows.Forms.Button();
+            this.btnReadModTCP = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ymax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ymin)).BeginInit();
@@ -90,6 +98,8 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // chart1
@@ -194,6 +204,17 @@
             this.groupBox1.Size = new System.Drawing.Size(257, 602);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(3, 396);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox1.Size = new System.Drawing.Size(251, 203);
+            this.textBox1.TabIndex = 14;
             // 
             // groupBox2
             // 
@@ -432,21 +453,11 @@
             0});
             this.setInterval.ValueChanged += new System.EventHandler(this.setInterval_ValueChanged);
             // 
-            // textBox1
-            // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Location = new System.Drawing.Point(3, 396);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox1.Size = new System.Drawing.Size(251, 203);
-            this.textBox1.TabIndex = 14;
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(3, 19);
             this.tabControl1.Name = "tabControl1";
@@ -532,7 +543,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(243, 191);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "TCP/IP";
+            this.tabPage2.Text = "RTU over TCP/IP";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel1
@@ -620,6 +631,101 @@
             this.testBtn.UseVisualStyleBackColor = true;
             this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.tableLayoutPanel3);
+            this.tabPage5.Location = new System.Drawing.Point(4, 25);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(243, 191);
+            this.tabPage5.TabIndex = 2;
+            this.tabPage5.Text = "TCP/IP";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.ColumnCount = 3;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.34147F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.82927F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.82927F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.txtBoxMBTCPsetIP, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.txtBoxMBTCPsetPort, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label10, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.label11, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnConnectModTCP, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnReadModTCP, 1, 3);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 4;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 48.48485F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 51.51515F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(243, 191);
+            this.tableLayoutPanel3.TabIndex = 5;
+            // 
+            // txtBoxMBTCPsetIP
+            // 
+            this.txtBoxMBTCPsetIP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxMBTCPsetIP.Location = new System.Drawing.Point(67, 3);
+            this.txtBoxMBTCPsetIP.Name = "txtBoxMBTCPsetIP";
+            this.txtBoxMBTCPsetIP.Size = new System.Drawing.Size(107, 23);
+            this.txtBoxMBTCPsetIP.TabIndex = 2;
+            this.txtBoxMBTCPsetIP.Text = "192.168.15.137";
+            // 
+            // txtBoxMBTCPsetPort
+            // 
+            this.txtBoxMBTCPsetPort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtBoxMBTCPsetPort.Location = new System.Drawing.Point(67, 38);
+            this.txtBoxMBTCPsetPort.Name = "txtBoxMBTCPsetPort";
+            this.txtBoxMBTCPsetPort.Size = new System.Drawing.Size(107, 23);
+            this.txtBoxMBTCPsetPort.TabIndex = 3;
+            this.txtBoxMBTCPsetPort.Text = "502";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label10.Location = new System.Drawing.Point(3, 35);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(58, 37);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Port:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(58, 35);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "IP:";
+            // 
+            // btnConnectModTCP
+            // 
+            this.btnConnectModTCP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnConnectModTCP.Location = new System.Drawing.Point(67, 75);
+            this.btnConnectModTCP.Name = "btnConnectModTCP";
+            this.btnConnectModTCP.Size = new System.Drawing.Size(107, 31);
+            this.btnConnectModTCP.TabIndex = 4;
+            this.btnConnectModTCP.Text = "Connect";
+            this.btnConnectModTCP.UseVisualStyleBackColor = true;
+            this.btnConnectModTCP.Click += new System.EventHandler(this.btnConnectModTCP_Click);
+            // 
+            // btnReadModTCP
+            // 
+            this.btnReadModTCP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnReadModTCP.Location = new System.Drawing.Point(67, 112);
+            this.btnReadModTCP.Name = "btnReadModTCP";
+            this.btnReadModTCP.Size = new System.Drawing.Size(107, 76);
+            this.btnReadModTCP.TabIndex = 5;
+            this.btnReadModTCP.Text = "Test Read";
+            this.btnReadModTCP.UseVisualStyleBackColor = true;
+            this.btnReadModTCP.Click += new System.EventHandler(this.btnReadModTCP_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -656,6 +762,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -700,6 +809,14 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TextBox txtBoxMBTCPsetIP;
+        private System.Windows.Forms.TextBox txtBoxMBTCPsetPort;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnConnectModTCP;
+        private System.Windows.Forms.Button btnReadModTCP;
     }
 }
 
