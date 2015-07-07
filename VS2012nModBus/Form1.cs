@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO.Ports;
 using System.Net.Sockets;
 using Modbus.Device;
+using log4net;
+using log4net.Config;
 
 
 namespace VS2012nModBus
@@ -19,6 +21,8 @@ namespace VS2012nModBus
         public Form1()
         {
             InitializeComponent();
+            BasicConfigurator.Configure();
+            logger.Info("info log.");
         }
 
 
@@ -44,6 +48,11 @@ namespace VS2012nModBus
 
         #endregion
 
+        #region Log4Net
+
+        private static readonly ILog logger =  LogManager.GetLogger(typeof(Form1));
+
+        #endregion
 
         #region Read Algodue
 
@@ -185,18 +194,19 @@ namespace VS2012nModBus
         }
         #endregion
 
+        #region Selecteaza Portul dorit
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
-
             if (conectat==false)
             {
                 button1.Enabled = true;
                 portName = comboBox1.SelectedItem.ToString();
                 //MessageBox.Show(portName);
-            }
-            
+            }   
         }
+
+        #endregion
 
 
         #region Timer
@@ -216,11 +226,13 @@ namespace VS2012nModBus
                 chart1.ChartAreas[0].AxisY.Maximum = valTensiune + 2;
                 chart1.ChartAreas[0].AxisY.Minimum = valTensiune - 2;
                 textBox1.AppendText("Tensiunea: " + Convert.ToString(valTensiune) + Environment.NewLine);
+                logger.Debug("Tensiunea: " + Convert.ToString(valTensiune));
                // chart1.Series[0].Points.AddXY(counter, valTensiune);
                 //frecventa
                 chart1.ChartAreas[0].AxisY2.Maximum = valFrecventa + 0.2;
                 chart1.ChartAreas[0].AxisY2.Minimum = valFrecventa - 0.2;
                 textBox1.AppendText("Frecventa: " +Convert.ToString(valFrecventa) + Environment.NewLine);
+                logger.Debug("Frecventa: " + Convert.ToString(valFrecventa));
                // chart1.Series[1].Points.AddXY(counter, valFrecventa);
             }
             if (counter > Convert.ToDouble(setInterval.Value))
@@ -235,6 +247,7 @@ namespace VS2012nModBus
         }
         #endregion
 
+        #region Neimplementat
 
         private void setInterval_ValueChanged(object sender, EventArgs e)
         {
@@ -245,6 +258,10 @@ namespace VS2012nModBus
            */
         }
 
+        #endregion 
+
+        #region Lazy Feature
+
         private void chart1_Click(object sender, EventArgs e)
         {
             chart1.Series[0].BorderWidth = 3;
@@ -252,6 +269,10 @@ namespace VS2012nModBus
             chart1.Series[0].Color = Color.Red;
             chart1.Series[1].Color = Color.Blue;
         }
+        
+        #endregion
+
+        #region Setari Grafic
 
         private void latimeTensiune_ValueChanged(object sender, EventArgs e)
         {
@@ -283,6 +304,10 @@ namespace VS2012nModBus
             }
         }
 
+        #endregion
+
+        #region Tab-urile de comunicatie pe ModBus
+
         private static int selected = 0;
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -312,6 +337,10 @@ namespace VS2012nModBus
             
         }
 
+        #endregion
+
+        #region Porturile Disponibile
+
         private void comboBox1_DropDown(object sender, EventArgs e)
         {
             comboBox1.Items.Clear();
@@ -321,13 +350,14 @@ namespace VS2012nModBus
                 comboBox1.Items.Add(port);
             }
         }
-        
-        
+
+        #endregion
+
         #region TCP
 
 
         #region Butonul de conectare TCP
-        
+
         //stare buton
         private static bool btState = false;    
         
@@ -485,5 +515,6 @@ namespace VS2012nModBus
         #endregion
 
         #endregion
+
     }
 }
